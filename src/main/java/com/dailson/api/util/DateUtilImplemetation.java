@@ -12,5 +12,6 @@ public class DateUtilImplemetation implements DateUtils {
 	public String formatLocalDateTimeDatabaseStyle(LocalDateTime localDateTime) {
 		return DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").format(localDateTime);
 
+		
 	}
 }

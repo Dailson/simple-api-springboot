@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dailson.api.domain.Anime;
+import com.dailson.api.services.AnimeService;
 import com.dailson.api.util.DateUtils;
 
 import lombok.extern.log4j.Log4j2;
@@ -19,15 +21,22 @@ import lombok.extern.log4j.Log4j2;
 public class AnimeController {
 
 	private DateUtils dateUtilImplemetation;
+	private AnimeService animeService;
 
-	public AnimeController(DateUtils dateUtilImplemetation) {
+	public AnimeController(DateUtils dateUtilImplemetation, AnimeService animeService) {
 		this.dateUtilImplemetation = dateUtilImplemetation;
+		this.animeService = animeService;
 	}
 
-	@GetMapping(path = "list")
+	@GetMapping()
 	public ResponseEntity<List<Anime>> listAll() {
 		log.info(dateUtilImplemetation.formatLocalDateTimeDatabaseStyle(LocalDateTime.now()));
-		return ResponseEntity.ok().body(List.of(new Anime("Anime 1"), new Anime("Anime 2")));
+		return ResponseEntity.ok().body(animeService.listAll());
+	}
+	
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<Anime> findById(@PathVariable long id){
+		return ResponseEntity.ok().body(animeService.findById(id));
 	}
 	
 }

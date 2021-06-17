@@ -5,13 +5,18 @@ import java.io.Serializable;
 public class Anime implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String name;
 
-	public Anime() {
+	
+
+	public Anime(Long id, String name) {
+		this.id = id;
+		this.name = name;
 	}
 
-	public Anime(String name) {
-		this.name = name;
+	public Long getId() {
+		return id;
 	}
 
 	public void setName(String newName) {
@@ -26,7 +31,7 @@ public class Anime implements Serializable {
 	public int hashCode() {
 		final var prime = 31;
 		var result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -39,17 +44,18 @@ public class Anime implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Anime other = (Anime) obj;
-		if (name == null) {
-			if (other.name != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Anime [name=" + name + "]";
+		return "Anime [id=" + id + ", name=" + name + "]";
 	}
+
 
 }
