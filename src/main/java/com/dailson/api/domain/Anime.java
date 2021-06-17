@@ -27,6 +27,10 @@ public class Anime implements Serializable {
 		return this.name;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Override
 	public int hashCode() {
 		final var prime = 31;

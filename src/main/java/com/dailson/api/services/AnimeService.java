@@ -21,8 +21,11 @@ public class AnimeService {
 	}
 
 	public Anime findById(long id) {
-		
 		return animeRepository.findById(id);
+	}
+
+	public static Anime save(Anime anime) {
+		return AnimeRepository.save(anime);
 	}
 
 }
