@@ -32,4 +32,8 @@ public class AnimeService {
 		animeRepository.delete(id);
 	}
 
+	public void replace(Anime anime) {
+		animeRepository.replace(anime);
+	}
+
 }

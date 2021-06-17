@@ -38,4 +38,9 @@ public class AnimeRepository {
 		animes.remove(findById(id));
 
 	}
+
+	public void replace(Anime anime) {
+		delete(anime.getId());
+		animes.add(anime);
+	}
 }
