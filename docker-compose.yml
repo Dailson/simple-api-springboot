@@ -1,14 +1,17 @@
-version: '3.1'
+version: '3.3'
 services:
   db:
     image: mysql
-    container_name: mysql
+    container_name: 'mysql'
     environment:
-      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: 'ANIME'
+      MYSQL_ROOT_PASSWORD: 'root'
     ports:
-    - "3306:3306"
+    - '3306:3306'
+    expose:
+      - '3306'
     volumes:
-    - api_data:/var/lib/mysql
+    - "api_data:/var/lib/mysql"
 
 volumes:
   api_data:
