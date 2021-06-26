@@ -1,9 +1,11 @@
 package com.dailson.api.controller;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,12 @@ public class AnimeController {
 	public ResponseEntity<Anime> save(@RequestBody Anime anime) {
 		log.info(dateUtilImplemetation.formatLocalDateTimeDatabaseStyle(LocalDateTime.now()));
 		return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
+	}
+
+	@GetMapping
+	public ResponseEntity<List<Anime>> listAll() {
+		log.info(dateUtilImplemetation.formatLocalDateTimeDatabaseStyle(LocalDateTime.now()));
+		return ResponseEntity.ok().body(animeService.listAll());
 	}
 
 }
