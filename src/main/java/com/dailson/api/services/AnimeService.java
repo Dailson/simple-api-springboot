@@ -1,7 +1,5 @@
 package com.dailson.api.services;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.dailson.api.domain.Anime;
@@ -16,24 +14,8 @@ public class AnimeService {
 		this.animeRepository = animeRepository;
 	}
 
-	public List<Anime> listAll() {
-		return animeRepository.listAnime();
-	}
-
-	public Anime findById(long id) {
-		return animeRepository.findById(id);
-	}
-
-	public static Anime save(Anime anime) {
-		return AnimeRepository.save(anime);
-	}
-
-	public void delete(long id) {
-		animeRepository.delete(id);
-	}
-
-	public void replace(Anime anime) {
-		animeRepository.replace(anime);
+	public Anime save(Anime anime) {
+		return animeRepository.save(anime);
 	}
 
 }
