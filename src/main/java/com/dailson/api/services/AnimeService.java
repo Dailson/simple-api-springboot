@@ -1,6 +1,7 @@
 package com.dailson.api.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -24,4 +25,7 @@ public class AnimeService {
 		return animeRepository.findAll();
 	}
 
+	public Optional<Anime> findById(long id) {
+		return animeRepository.findById(id);
+	}
 }

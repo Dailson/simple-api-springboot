@@ -16,17 +16,20 @@ public class Anime implements Serializable {
 	private Long id;
 	private String name;
 
-	
 	public Anime() {
 	}
 
 	public Anime(Long id, String name) {
-		this.id = id; 
+		this.id = id;
 		this.name = name;
 	}
 
 	public Long getId() {
 		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setName(String newName) {
@@ -35,10 +38,6 @@ public class Anime implements Serializable {
 
 	public String getName() {
 		return this.name;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	@Override
@@ -70,6 +69,5 @@ public class Anime implements Serializable {
 	public String toString() {
 		return "Anime [id=" + id + ", name=" + name + "]";
 	}
-
 
 }
