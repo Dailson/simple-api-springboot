@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.dailson.api.domain.Anime;
+import com.dailson.api.mappers.AnimeMapper;
 import com.dailson.api.repositories.AnimeRepository;
 import com.dailson.api.requests.AnimePostRequestBody;
 import com.dailson.api.requests.AnimePutRequestBody;
@@ -30,7 +31,7 @@ public class AnimeService {
 	}
 
 	public Anime save(AnimePostRequestBody anime) {
-		return animeRepository.save(new Anime(null, anime.getName()));
+		return animeRepository.save(AnimeMapper.INSTANCE.toAnime(anime));
 	}
 
 	public void delete(long id) {
@@ -38,7 +39,11 @@ public class AnimeService {
 	}
 
 	public Anime replace(AnimePutRequestBody anime) {
-		findByIdOrThrowBadRequestException(anime.getId());
-		return animeRepository.save(new Anime(anime.getId(), anime.getName()));
+		var savedAnime = findByIdOrThrowBadRequestException(anime.getId());
+		var mappedAnime = AnimeMapper.INSTANCE.toAnime(anime);
+
+		anime.setId(savedAnime.getId());
+
+		return animeRepository.save(mappedAnime);
 	}
 }
