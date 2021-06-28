@@ -1,12 +1,15 @@
 package com.dailson.api.services;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.dailson.api.domain.Anime;
 import com.dailson.api.repositories.AnimeRepository;
+import com.dailson.api.requests.AnimePostRequestBody;
+import com.dailson.api.requests.AnimePutRequestBody;
 
 @Service
 public class AnimeService {
@@ -17,15 +20,25 @@ public class AnimeService {
 		this.animeRepository = animeRepository;
 	}
 
-	public Anime save(Anime anime) {
-		return animeRepository.save(anime);
-	}
-
-	public List<Anime> listAll(){
+	public List<Anime> listAll() {
 		return animeRepository.findAll();
 	}
 
-	public Optional<Anime> findById(long id) {
-		return animeRepository.findById(id);
+	public Anime findByIdOrThrowBadRequestException(long id) {
+		return animeRepository.findById(id)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not found!"));
+	}
+
+	public Anime save(AnimePostRequestBody anime) {
+		return animeRepository.save(new Anime(null, anime.getName()));
+	}
+
+	public void delete(long id) {
+		animeRepository.delete(findByIdOrThrowBadRequestException(id));
+	}
+
+	public Anime replace(AnimePutRequestBody anime) {
+		findByIdOrThrowBadRequestException(anime.getId());
+		return animeRepository.save(new Anime(anime.getId(), anime.getName()));
 	}
 }
