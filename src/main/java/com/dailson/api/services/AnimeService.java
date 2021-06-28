@@ -11,6 +11,7 @@ import com.dailson.api.mappers.AnimeMapper;
 import com.dailson.api.repositories.AnimeRepository;
 import com.dailson.api.requests.AnimePostRequestBody;
 import com.dailson.api.requests.AnimePutRequestBody;
+import com.dailson.api.services.exceptions.BadRequestException;
 
 @Service
 public class AnimeService {
@@ -27,7 +28,7 @@ public class AnimeService {
 
 	public Anime findByIdOrThrowBadRequestException(long id) {
 		return animeRepository.findById(id)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not found!"));
+				.orElseThrow(() -> new BadRequestException("Anime not found!"));
 	}
 
 	public List<Anime> findByName(String name) {
