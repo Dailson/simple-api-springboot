@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.dailson.api.domain.Anime;
+import com.dailson.api.exceptions.BadRequestException;
 import com.dailson.api.mappers.AnimeMapper;
 import com.dailson.api.repositories.AnimeRepository;
 import com.dailson.api.requests.AnimePostRequestBody;
 import com.dailson.api.requests.AnimePutRequestBody;
-import com.dailson.api.services.exceptions.BadRequestException;
 
 @Service
 public class AnimeService {

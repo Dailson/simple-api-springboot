@@ -1,4 +1,4 @@
-package com.dailson.api.services.exceptions;
+package com.dailson.api.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
