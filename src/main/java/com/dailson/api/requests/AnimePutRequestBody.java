@@ -1,8 +1,13 @@
 package com.dailson.api.requests;
 
+import javax.validation.constraints.NotEmpty;
+
 public class AnimePutRequestBody {
 
+	@NotEmpty(message = "The Anime name cannot be empty")
 	private Long id;
+
+	@NotEmpty(message = "The Anime name cannot be empty")
 	private String name;
 
 	public AnimePutRequestBody() {
@@ -16,8 +21,8 @@ public class AnimePutRequestBody {
 		return id;
 	}
 
-	/**
-	 * @param id the id to set
+	/**	
+	 * @param id the id to set	
 	 */
 	public void setId(Long id) {
 		this.id = id;

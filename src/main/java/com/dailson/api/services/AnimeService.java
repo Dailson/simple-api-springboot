@@ -2,12 +2,8 @@ package com.dailson.api.services;
 
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.dailson.api.domain.Anime;
 import com.dailson.api.exceptions.BadRequestException;

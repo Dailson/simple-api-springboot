@@ -2,6 +2,8 @@ package com.dailson.api.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,7 +33,7 @@ public class AnimeController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody anime) {
+	public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody anime) {
 		return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
 	}
 
@@ -52,7 +54,7 @@ public class AnimeController {
 	
 	
 	@PutMapping
-	public ResponseEntity<Void> update(@RequestBody AnimePutRequestBody anime) {
+	public ResponseEntity<Void> update(@RequestBody @Valid AnimePutRequestBody anime) {
 		animeService.replace(anime);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

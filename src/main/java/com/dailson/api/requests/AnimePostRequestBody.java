@@ -1,7 +1,10 @@
 package com.dailson.api.requests;
 
+import javax.validation.constraints.NotEmpty;
+
 public class AnimePostRequestBody {
 
+	@NotEmpty(message = "The anime name cannot be empty ")
 	private String name;
 		
 	public AnimePostRequestBody() {
