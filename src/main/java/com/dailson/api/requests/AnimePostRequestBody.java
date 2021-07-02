@@ -2,11 +2,17 @@ package com.dailson.api.requests;
 
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.URL;
+
 public class AnimePostRequestBody {
 
-	@NotEmpty(message = "The anime name cannot be empty ")
+	@NotEmpty(message = "The anime name cannot be EMPTY or NULL")
 	private String name;
-		
+
+	@URL(message = "The URL is invalid")
+	private String url;
+	
+	
 	public AnimePostRequestBody() {
 		// Empty constructor
 	}
@@ -16,6 +22,15 @@ public class AnimePostRequestBody {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	
+	public String getUrl() {
+		return url;
+	}
+	
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	@Override

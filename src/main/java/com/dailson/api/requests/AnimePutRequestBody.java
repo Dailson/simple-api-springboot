@@ -4,7 +4,7 @@ import javax.validation.constraints.NotEmpty;
 
 public class AnimePutRequestBody {
 
-	@NotEmpty(message = "The Anime name cannot be empty")
+	@NotEmpty(message = "The Anime id cannot be empty")
 	private Long id;
 
 	@NotEmpty(message = "The Anime name cannot be empty")
