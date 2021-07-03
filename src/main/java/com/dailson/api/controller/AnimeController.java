@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,8 +40,8 @@ public class AnimeController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Anime>> listAll() {
-		return ResponseEntity.ok().body(animeService.listAll());
+	public ResponseEntity<Page<Anime>> list(Pageable pageable) {
+		return ResponseEntity.ok().body(animeService.listAll(pageable));
 	}
 
 	@GetMapping(path = "/{id}")

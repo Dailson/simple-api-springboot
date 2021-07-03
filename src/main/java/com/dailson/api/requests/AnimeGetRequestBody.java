@@ -4,6 +4,9 @@ public class AnimeGetRequestBody {
 
 	private String name;
 
+	private String url;
+	
+	
 	public AnimeGetRequestBody() {
 		// Do nothing
 	}
@@ -13,6 +16,14 @@ public class AnimeGetRequestBody {
 	 */
 	public String getName() {
 		return name;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+	
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	/**
@@ -51,5 +62,6 @@ public class AnimeGetRequestBody {
 	public String toString() {
 		return "AnimeGetRequestBody [name=" + name + "]";
 	}
+
 
 }

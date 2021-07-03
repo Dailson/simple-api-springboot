@@ -13,6 +13,18 @@ public class AnimePostRequestBody {
 	private String url;
 	
 	
+	
+	/**
+	 * @param name
+	 * @param url
+	 */
+	public AnimePostRequestBody(@NotEmpty(message = "The anime name cannot be EMPTY or NULL") String name,
+			@URL(message = "The URL is invalid") String url) {
+		super();
+		this.name = name;
+		this.url = url;
+	}
+
 	public AnimePostRequestBody() {
 		// Empty constructor
 	}

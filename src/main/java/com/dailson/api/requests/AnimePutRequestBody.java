@@ -10,6 +10,8 @@ public class AnimePutRequestBody {
 	@NotEmpty(message = "The Anime name cannot be empty")
 	private String name;
 
+	private String url;
+	
 	public AnimePutRequestBody() {
 		// Do nothing
 	}
@@ -42,12 +44,21 @@ public class AnimePutRequestBody {
 		this.name = name;
 	}
 
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	public String getUrl() {
+		return this.url;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		return result;
 	}
 
@@ -70,12 +81,13 @@ public class AnimePutRequestBody {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (url == null) {
+			if (other.url != null)
+				return false;
+		} else if (!url.equals(other.url))
+			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "AnimePutRequestBody [id=" + id + ", name=" + name + "]";
-	}
 
 }

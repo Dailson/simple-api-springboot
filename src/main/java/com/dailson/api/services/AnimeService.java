@@ -2,6 +2,8 @@ package com.dailson.api.services;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +23,8 @@ public class AnimeService {
 		this.animeRepository = animeRepository;
 	}
 
-	public List<Anime> listAll() {
-		return animeRepository.findAll();
+	public Page<Anime> listAll(Pageable pegeable) {
+		return animeRepository.findAll(pegeable);
 	}
 
 	public Anime findByIdOrThrowBadRequestException(long id) {
