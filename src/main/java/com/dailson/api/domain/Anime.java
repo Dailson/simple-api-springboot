@@ -87,5 +87,10 @@ public class Anime implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Anime [id=" + id + ", name=" + name + ", url=" + url + "]";
+	}
+
 
 }
