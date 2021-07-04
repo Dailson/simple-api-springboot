@@ -3,6 +3,7 @@ package com.dailson.api.client;
 import java.util.List;
 
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -23,14 +24,32 @@ public class SpringClient {
 
 		log.info(object);
 
-		//// @formatter:off
-		ResponseEntity<List<Anime>> exchange = new RestTemplate().exchange("http://localhost:8080/animes/all",
+		// @formatter:off
+		ResponseEntity<List<Anime>> exchangeGet = new RestTemplate().exchange("http://localhost:8080/animes/all",
 				HttpMethod.GET,
 				null,
 				new ParameterizedTypeReference<>() {});
 
 		// @formatter:on
+
+		log.info(exchangeGet);
+
+//		var kingdom = new Anime(null, "Dailson", "http://www.dailson.com.br");
+//		Anime kingdomSaved = new RestTemplate().postForObject("http://localhost:8080/animes/", kingdom, Anime.class);
+//
+//		log.info("Saved Anime{}", kingdomSaved);
+
+		//@// @formatter:off
 		
-		log.info(exchange);
+		var animeSaved = new Anime(null, "Bito", "http://www.bito.com.br");
+		ResponseEntity<Anime> exchangePost = new RestTemplate().exchange("http://localhost:8080/animes/",
+				HttpMethod.POST,
+				new HttpEntity<>(animeSaved),
+				Anime.class);
+		
+		log.info("saved anime{}", exchangePost);
+		// @formatter:on
+
 	}
+
 }
