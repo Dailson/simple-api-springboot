@@ -44,6 +44,7 @@ public class AnimeController {
 		return ResponseEntity.ok().body(animeService.listAll(pageable));
 	}
 
+	// Method used for testing. Need to be removed at the end of the project
 	@GetMapping(path = "/all")
 	public ResponseEntity <List<Anime>> listAllNoPageable() {
 		return ResponseEntity.ok().body(animeService.listAllNoPageable());
