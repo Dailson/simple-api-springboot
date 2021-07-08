@@ -16,6 +16,10 @@ public class AnimeUtil {
 		return new Anime(null, name, url);
 	}
 
+	public static Anime createOneEmptyAnime() {
+		return new Anime();
+	}
+	
 	public static List<Anime> createListOfAnime(int quantityOfAnime) {
 		List<Anime> listAnime = new ArrayList<>();
 		for (int i = 0; i < quantityOfAnime; i++) {

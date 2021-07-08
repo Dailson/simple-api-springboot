@@ -1,10 +1,13 @@
 package com.dailson.api.repositories;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.ConstraintViolationException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,6 +26,9 @@ class AnimeRepositoryTest {
 
 	@Autowired
 	private AnimeRepository animeRepository;
+
+	// ################# SUCCESSFUL CASE ##############
+	// ################################################
 
 	@Test
 	@DisplayName("Save - Persists anime when successful")
@@ -110,18 +116,6 @@ class AnimeRepositoryTest {
 		assertThat(animeList).contains(animeSaved);
 	}
 
-	// Do edges cases
-	@Test
-	@DisplayName("FindByName - Return empty list when no anime is found")
-	void findByName_ReturnsEmptyLis_WhenAnimeIsNotFound() {
-		// Scenery
-		List<Anime> animeList = animeRepository.findByName("xaxa");
-		
-
-		// Verification
-		assertThat(animeList).isEmpty();
-	}
-
 	@Test
 	@DisplayName("List - Returns pageable list of anime")
 	void list_ReturnsPageableList_WhenSuccessful() {
@@ -142,4 +136,41 @@ class AnimeRepositoryTest {
 		assertThat(animeFoundList.get(0)).isNotNull();
 
 	}
+
+	// ################## EDGE CASE ###################
+	// ################################################
+
+	@Test
+	@DisplayName("FindByName - Return empty list when no anime is found")
+	void findByName_ReturnsEmptyLis_WhenAnimeIsNotFound() {
+		// Scenery
+		List<Anime> animeList = animeRepository.findByName("xaxa");
+
+		// Verification
+		assertThat(animeList).isEmpty();
+	}
+
+	// ################ EXCEPTIONS CASE ###############
+	// ################################################
+
+	@Test
+	@DisplayName("Save - ThrowsConstrainViolationException_WhenNameIsEmpty")
+	void save_ThrowsConstrainViolationException_WhenNameIsEmpty() {
+
+		// Scenary
+		Anime emptyAnime = AnimeUtil.createOneEmptyAnime();
+
+		// Action and Validation
+
+		// Method one
+		//assertThatThrownBy(() -> this.animeRepository.save(emptyAnime))
+		//  .isInstanceOf(ConstraintViolationException.class);
+		
+		
+		// Method two
+		assertThatExceptionOfType(ConstraintViolationException.class)
+			.isThrownBy(() -> this.animeRepository.save(emptyAnime))
+			.withMessageContaining("The Anime name cannot be EMPTY OR NULL");
+	}
+
 }
