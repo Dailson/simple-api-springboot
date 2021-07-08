@@ -35,7 +35,7 @@ class AnimeRepositoryTest {
 	void save_PersistAnime_WhenSuccessful() {
 
 		// Scenery
-		Anime animeToBeSaved = AnimeUtil.createOneAnime();
+		Anime animeToBeSaved = AnimeUtil.createOneAnimeWithoutId();
 
 		// Action
 		Anime animeSaved = animeRepository.save(animeToBeSaved);
@@ -52,7 +52,7 @@ class AnimeRepositoryTest {
 	void update_UpdaterAnime_WhenSuccessful() {
 
 		// Scenery
-		Anime animeToBeSaved = AnimeUtil.createOneAnime();
+		Anime animeToBeSaved = AnimeUtil.createOneAnimeWithoutId();
 		Anime animeSaved = animeRepository.save(animeToBeSaved);
 
 		// Action
@@ -70,7 +70,7 @@ class AnimeRepositoryTest {
 	void delete_RemoveAnime_WhenSuccessful() {
 
 		// Scenery
-		Anime animeToBeSaved = AnimeUtil.createOneAnime();
+		Anime animeToBeSaved = AnimeUtil.createOneAnimeWithoutId();
 		Anime animeSaved = animeRepository.save(animeToBeSaved);
 
 		// Action
@@ -87,7 +87,7 @@ class AnimeRepositoryTest {
 	void findById_FindAnimeById_WhenSuccessful() {
 
 		// Scenery
-		Anime animeToBeSaved = AnimeUtil.createOneAnime();
+		Anime animeToBeSaved = AnimeUtil.createOneAnimeWithoutId();
 		Anime animeSaved = animeRepository.save(animeToBeSaved);
 
 		// Action
@@ -103,7 +103,7 @@ class AnimeRepositoryTest {
 	@DisplayName("FindByName - Return list of anime")
 	void findByName_ReturnsListOfAnime_WhenSuccessful() {
 		// Scenery
-		Anime animeToBeSaved = AnimeUtil.createOneAnime();
+		Anime animeToBeSaved = AnimeUtil.createOneAnimeWithoutId();
 		Anime animeSaved = animeRepository.save(animeToBeSaved);
 
 		String animeName = animeSaved.getName();
