@@ -49,13 +49,12 @@ public class AnimeService {
 		animeRepository.delete(findByIdOrThrowBadRequestException(id));
 	}
 
-	public Anime replace(AnimePutRequestBody anime) {
+	public void replace(AnimePutRequestBody anime) {
 		var savedAnime = findByIdOrThrowBadRequestException(anime.getId());
 		var mappedAnime = AnimeMapper.INSTANCE.toAnime(anime);
 
 		anime.setId(savedAnime.getId());
-
-		return animeRepository.save(mappedAnime);
+		animeRepository.save(mappedAnime);
 	}
 
 }

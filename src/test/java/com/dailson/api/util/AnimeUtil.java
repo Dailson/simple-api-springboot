@@ -1,45 +1,39 @@
 package com.dailson.api.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.dailson.api.domain.Anime;
-import com.github.javafaker.Faker;
+import com.dailson.api.requests.AnimePostRequestBody;
+import com.dailson.api.requests.AnimePutRequestBody;
 
 public class AnimeUtil {
 
-	private static Faker fake = new Faker();
-
-	public static Anime createOneEmptyAnime() {
+	public static Anime createEmptyAnimeWithId() {
 		return new Anime();
 	}
-	
-	public static Anime createOneAnimeWithoutId() {
-		String name = fake.name().firstName();
-		String url = fake.company().url();
+
+	public static Anime createValidAnimeWithoutId() {
+		String name = "Dailson";
+		String url = "http://www.dailson.com.br";
 		return new Anime(null, name, url);
 	}
 
-	public static Anime createOneAnimeWithId() {
-		String name = fake.name().firstName();
-		String url = fake.company().url();
-		Long id = 1L;
-		return new Anime(id, name, url);
-	}
-	
-	
-	public static Anime createOneStaticAnimeWithId() {
+	public static Anime createValidAnimeWithId() {
 		String name = "Dailson";
 		String url = "http://www.dailson.com.br";
 		Long id = 1L;
 		return new Anime(id, name, url);
 	}
-	
-	public static List<Anime> createListOfAnime(int quantityOfAnime) {
-		List<Anime> listAnime = new ArrayList<>();
-		for (int i = 0; i < quantityOfAnime; i++) {
-			listAnime.add(new Anime(null, fake.name().firstName(), fake.company().url()));
-		}
-		return listAnime;
+
+	public static AnimePostRequestBody createPostRequestBodyAnime() {
+		String name = "Dailson";
+		String url = "http://www.dailson.com.br";
+		return new AnimePostRequestBody(name, url);
 	}
+
+	public static AnimePutRequestBody createPutRequestBody() {
+		String name = "Dailson";
+		String url = "http://www.dailson.com.br";
+		Long id = 1L;
+		return new AnimePutRequestBody(id, name, url);
+	}
+
 }

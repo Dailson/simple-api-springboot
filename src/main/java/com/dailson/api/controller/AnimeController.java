@@ -34,10 +34,6 @@ public class AnimeController {
 		this.animeService = animeService;
 	}
 
-	@PostMapping
-	public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody anime) {
-		return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
-	}
 
 	@GetMapping
 	public ResponseEntity<Page<Anime>> list(Pageable pageable) {
@@ -60,9 +56,13 @@ public class AnimeController {
 		return ResponseEntity.ok(animeService.findByName(name));
 	}
 	
-	
+	@PostMapping
+	public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody anime) {
+		return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
+	}
+		
 	@PutMapping
-	public ResponseEntity<Void> update(@RequestBody @Valid AnimePutRequestBody anime) {
+	public ResponseEntity<Void> replace(@RequestBody @Valid AnimePutRequestBody anime) {
 		animeService.replace(anime);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

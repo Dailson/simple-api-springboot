@@ -35,7 +35,7 @@ class AnimeRepositoryTest {
 	void save_PersistAnime_WhenSuccessful() {
 
 		// Scenery
-		Anime animeToBeSaved = AnimeUtil.createOneAnimeWithoutId();
+		Anime animeToBeSaved = AnimeUtil.createValidAnimeWithoutId();
 
 		// Action
 		Anime animeSaved = animeRepository.save(animeToBeSaved);
@@ -52,7 +52,7 @@ class AnimeRepositoryTest {
 	void update_UpdaterAnime_WhenSuccessful() {
 
 		// Scenery
-		Anime animeToBeSaved = AnimeUtil.createOneAnimeWithoutId();
+		Anime animeToBeSaved = AnimeUtil.createValidAnimeWithoutId();
 		Anime animeSaved = animeRepository.save(animeToBeSaved);
 
 		// Action
@@ -70,7 +70,7 @@ class AnimeRepositoryTest {
 	void delete_RemoveAnime_WhenSuccessful() {
 
 		// Scenery
-		Anime animeToBeSaved = AnimeUtil.createOneAnimeWithoutId();
+		Anime animeToBeSaved = AnimeUtil.createValidAnimeWithoutId();
 		Anime animeSaved = animeRepository.save(animeToBeSaved);
 
 		// Action
@@ -87,7 +87,7 @@ class AnimeRepositoryTest {
 	void findById_FindAnimeById_WhenSuccessful() {
 
 		// Scenery
-		Anime animeToBeSaved = AnimeUtil.createOneAnimeWithoutId();
+		Anime animeToBeSaved = AnimeUtil.createValidAnimeWithoutId();
 		Anime animeSaved = animeRepository.save(animeToBeSaved);
 
 		// Action
@@ -103,7 +103,7 @@ class AnimeRepositoryTest {
 	@DisplayName("FindByName - Return list of anime")
 	void findByName_ReturnsListOfAnime_WhenSuccessful() {
 		// Scenery
-		Anime animeToBeSaved = AnimeUtil.createOneAnimeWithoutId();
+		Anime animeToBeSaved = AnimeUtil.createValidAnimeWithoutId();
 		Anime animeSaved = animeRepository.save(animeToBeSaved);
 
 		String animeName = animeSaved.getName();
@@ -120,7 +120,7 @@ class AnimeRepositoryTest {
 	@DisplayName("List - Returns pageable list of anime")
 	void list_ReturnsPageableList_WhenSuccessful() {
 		// Scenery
-		List<Anime> AnimeListToBeSaved = AnimeUtil.createListOfAnime(5);
+		List<Anime> AnimeListToBeSaved = List.of(AnimeUtil.createValidAnimeWithoutId());
 		List<Anime> AnimeListSaved = new ArrayList<>();
 
 		for (Anime anime : AnimeListToBeSaved) {
@@ -158,7 +158,7 @@ class AnimeRepositoryTest {
 	void save_ThrowsConstrainViolationException_WhenNameIsEmpty() {
 
 		// Scenary
-		Anime emptyAnime = AnimeUtil.createOneEmptyAnime();
+		Anime emptyAnime = AnimeUtil.createEmptyAnimeWithId();
 
 		// Action and Validation
 

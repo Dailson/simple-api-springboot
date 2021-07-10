@@ -15,6 +15,23 @@ public class AnimePutRequestBody {
 		// Do nothing
 	}
 
+
+	
+	
+	/**
+	 * @param id
+	 * @param name
+	 * @param url
+	 */
+	public AnimePutRequestBody(Long id, String name, String url) {
+		this.id = id;
+		this.name = name;
+		this.url = url;
+	}
+
+
+
+
 	/**
 	 * @return the id
 	 */
