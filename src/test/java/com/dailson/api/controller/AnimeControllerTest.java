@@ -107,7 +107,7 @@ class AnimeControllerTest {
 
 	@Test
 	@DisplayName("ListAllNoPageable - Returns list of all anime when successful")
-	void list_ReturnListOfAllAnime_WhenSuccessful() {
+	void listAll_ReturnListOfAllAnime_WhenSuccessful() {
 		String expectedName = AnimeUtil.createValidAnimeWithId().getName();
 
 		List<Anime> listAnime = animeController.listAllNoPageable().getBody();
