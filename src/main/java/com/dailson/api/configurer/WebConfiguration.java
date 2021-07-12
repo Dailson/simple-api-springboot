@@ -1,4 +1,4 @@
-package com.dailson.api.config;
+package com.dailson.api.configurer;
 
 import java.util.List;
 
