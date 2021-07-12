@@ -2,11 +2,11 @@ package com.dailson.api.config;
 
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -14,12 +14,15 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
-	// O que estamos querendo proteger em uma requisição http?
+	// What are you wanto to protect in a http resquest?
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		// Qualquer requisição, qualquer uma, deve passar por autênticação http básica.
-		http.authorizeRequests()
+		// Any request, any one, must pass for a basic http authentication
+		http.csrf()
+//		.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+			.and()
+			.authorizeRequests()
 			.anyRequest()
 			.authenticated()
 			.and()
