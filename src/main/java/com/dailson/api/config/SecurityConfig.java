@@ -10,11 +10,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.extern.log4j.Log4j2;
 
+	
+
 @EnableWebSecurity
 @Log4j2
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+	/**
+	 * Filters
+	 * 
+	 * BasicAuthenticationFilter // verify is the authentication is base64
+	 * UsernamePasswordAuthenticationFilter // verity if there is a user and password on request
+	 * DefaultLoginPageGeneratingFilter
+	 * FilterSecurityInterceptor
+	 * Authenticator -> authorization
+	 */
+	
 	// What are you wanto to protect in a http resquest?
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -26,6 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.authorizeRequests()
 			.anyRequest()
 			.authenticated()
+			.and()
+			.formLogin()
 			.and()
 			.httpBasic();
 		 
