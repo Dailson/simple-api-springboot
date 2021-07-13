@@ -62,6 +62,7 @@ public class AnimeController {
 	}
 
 	@GetMapping(path = "/by-id/{id}")
+	@PreAuthorize("hasRole('ADMIN')") // Just for test
 	public ResponseEntity<Anime> findByIdAuthenticationPrincipal(@PathVariable long id, 
 			@AuthenticationPrincipal UserDetails userDetails){
 		

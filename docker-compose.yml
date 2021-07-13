@@ -4,7 +4,7 @@ services:
     image: mysql
     container_name: 'mysql'
     environment:
-      MYSQL_DATABASE: 'ANIME'
+      MYSQL_DATABASE: 'api'
       MYSQL_ROOT_PASSWORD: 'root'
     ports:
     - '3306:3306'

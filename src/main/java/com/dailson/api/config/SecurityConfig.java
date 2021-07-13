@@ -8,6 +8,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.dailson.api.repositories.DevDojoUserRepository;
+import com.dailson.api.services.DevDojoUserDetailsService;
+
 import lombok.extern.log4j.Log4j2;
 
 	
@@ -16,7 +19,15 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	private DevDojoUserDetailsService devDojoUserDetailsService;
 
+	
+	public SecurityConfig(DevDojoUserDetailsService devDojoUserDetailsService) {
+		this.devDojoUserDetailsService = devDojoUserDetailsService;
+	}	
+	
+	
 	/**
 	 * Filters
 	 * 
@@ -24,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	 * UsernamePasswordAuthenticationFilter // verity if there is a user and password on request
 	 * DefaultLoginPageGeneratingFilter
 	 * FilterSecurityInterceptor
-	 * Authenticator -> authorization
+	 * Authenticator -> authorization 
 	 */
 	
 	// What are you wanto to protect in a http resquest?
@@ -49,18 +60,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// EncodePassword
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		log.info("Password encoded {}", passwordEncoder.encode("test"));
 		
 		// creates user in memory
-		auth.inMemoryAuthentication()
-			.withUser("root")
-			.password(passwordEncoder.encode("test"))
-			.roles("USER", "ADMIN")
-			.and()
-			.withUser("dailson")
-			.password(passwordEncoder.encode("test"))
-			.roles("USER");
+//		auth.inMemoryAuthentication()
+//			.withUser("root")
+//			.password(passwordEncoder.encode("test"))
+//			.roles("USER", "ADMIN")
+//			.and()
+//			.withUser("dailson")
+//			.password(passwordEncoder.encode("test"))
+//			.roles("USER");
 			
-			
+			auth.userDetailsService(devDojoUserDetailsService)
+					.passwordEncoder(passwordEncoder);
 	}
 
 	
