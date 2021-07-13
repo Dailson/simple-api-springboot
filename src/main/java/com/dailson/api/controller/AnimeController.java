@@ -62,7 +62,6 @@ public class AnimeController {
 	}
 
 	@GetMapping(path = "/by-id/{id}")
-	@PreAuthorize("hasRole('ADMIN')") // Just for test
 	public ResponseEntity<Anime> findByIdAuthenticationPrincipal(@PathVariable long id, 
 			@AuthenticationPrincipal UserDetails userDetails){
 		
@@ -73,7 +72,6 @@ public class AnimeController {
 	}
 	
 	@PostMapping
-	@PreAuthorize("hasRole('ADMIN')") // To save you must be admin
 	public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody anime) {
 		return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
 	}
@@ -84,7 +82,7 @@ public class AnimeController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-	@DeleteMapping(path = "/{id}")
+	@DeleteMapping(path = "/admin/{id}")
 	public ResponseEntity<Void> delete(@PathVariable long id){
 		animeService.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);

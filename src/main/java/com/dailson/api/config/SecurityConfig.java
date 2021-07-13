@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.dailson.api.repositories.DevDojoUserRepository;
 import com.dailson.api.services.DevDojoUserDetailsService;
 
 import lombok.extern.log4j.Log4j2;
@@ -47,6 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //		.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //			.and()
 			.authorizeRequests()
+			.antMatchers("/animes/admin/**").hasRole("ADMIN")
+			.antMatchers("/animes/**").hasRole("USER")
 			.anyRequest()
 			.authenticated()
 			.and()
