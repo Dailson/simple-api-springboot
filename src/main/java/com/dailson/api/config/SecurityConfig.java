@@ -65,11 +65,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		// creates user in memory
 //		auth.inMemoryAuthentication()
-//			.withUser("root")
+//			.withUser("dailson")
 //			.password(passwordEncoder.encode("test"))
 //			.roles("USER", "ADMIN")
 //			.and()
-//			.withUser("dailson")
+//			.withUser("bito")
 //			.password(passwordEncoder.encode("test"))
 //			.roles("USER");
 			
