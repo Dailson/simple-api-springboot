@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +26,7 @@ import com.dailson.api.requests.AnimePostRequestBody;
 import com.dailson.api.requests.AnimePutRequestBody;
 import com.dailson.api.services.AnimeService;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.log4j.Log4j2;
 
 @RestController // Transform this class on a controller
@@ -41,7 +42,7 @@ public class AnimeController {
 
 
 	@GetMapping
-	public ResponseEntity<Page<Anime>> list(Pageable pageable) {
+	public ResponseEntity<Page<Anime>> list(@ParameterObject Pageable pageable) {
 		return ResponseEntity.ok().body(animeService.listAll(pageable));
 	}
 
