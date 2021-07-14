@@ -112,9 +112,11 @@ class AnimeControllerTest {
 
 		List<Anime> listAnime = animeController.listAllNoPageable().getBody();
 
-		assertThat(listAnime).isNotNull();
-		assertThat(listAnime).isNotEmpty();
-		assertThat(listAnime).hasSize(1);
+		assertThat(listAnime)
+			.isNotNull()
+			.isNotEmpty()
+			.hasSize(1);
+		
 		assertThat(listAnime.get(0).getName()).isEqualTo(expectedName);
 
 	}
@@ -127,8 +129,9 @@ class AnimeControllerTest {
 		Anime animeFound = animeController.findById(1L).getBody();
 
 		assertThat(animeFound).isNotNull();
-		assertThat(animeFound.getId()).isNotNull();
-		assertThat(animeFound.getId()).isEqualTo(expectedId);
+		assertThat(animeFound.getId())
+			.isNotNull()
+			.isEqualTo(expectedId);
 	}
 
 	@Test
@@ -138,9 +141,10 @@ class AnimeControllerTest {
 
 		List<Anime> listAnime = animeController.findByName("anime").getBody();
 
-		assertThat(listAnime).isNotNull();
-		assertThat(listAnime).isNotEmpty();
-		assertThat(listAnime).hasSize(1);
+		assertThat(listAnime)
+			.isNotNull()
+			.isNotEmpty()
+			.hasSize(1);
 		assertThat(listAnime.get(0).getName()).isEqualTo(expectedName);
 
 	}
@@ -154,8 +158,9 @@ class AnimeControllerTest {
 
 		List<Anime> listAnime = animeController.findByName("anime").getBody();
 
-		assertThat(listAnime).isNotNull();
-		assertThat(listAnime).isEmpty();
+		assertThat(listAnime)
+			.isNotNull()
+			.isEmpty();
 
 	}
 

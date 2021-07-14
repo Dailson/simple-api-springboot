@@ -121,9 +121,10 @@ class AnimeControllerIT {
 				.exchange("/animes/all", HttpMethod.GET, null, new ParameterizedTypeReference<List<Anime>>() {
 				}).getBody();
 
-		assertThat(animeList).isNotNull();
-		assertThat(animeList).isNotEmpty();
-		assertThat(animeList).hasSize(1);
+		assertThat(animeList)
+			.isNotNull()
+			.isNotEmpty()
+			.hasSize(1);
 		assertThat(animeList.get(0).getName()).isEqualTo(expectedName);
 	}
 
@@ -156,9 +157,10 @@ class AnimeControllerIT {
 				.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Anime>>() {
 				}).getBody();
 
-		assertThat(animeList).isNotNull();
-		assertThat(animeList).isNotEmpty();
-		assertThat(animeList).hasSize(1);
+		assertThat(animeList)
+			.isNotNull()
+			.isNotEmpty()
+			.hasSize(1);
 		assertThat(animeList.get(0).getName()).isEqualTo(expectedName);
 	}
 
