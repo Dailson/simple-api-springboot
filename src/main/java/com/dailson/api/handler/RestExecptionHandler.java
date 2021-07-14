@@ -21,23 +21,24 @@ import com.dailson.api.exceptions.ExceptionDetails;
 import com.dailson.api.exceptions.ValidExceptionDetails;
 
 @ControllerAdvice
-
 public class RestExecptionHandler extends ResponseEntityExceptionHandler{
 
 	@ExceptionHandler(BadRequestException.class)
 	public ResponseEntity<BadRequestExceptionDetails> handleBadRequestExceptions(BadRequestException exception){
 		return new ResponseEntity<>(
-				new BadRequestExceptionDetails(
-					"Bad Request Exception, check the Documentation",
-					HttpStatus.BAD_REQUEST.value(),
-					exception.getMessage(),
-					exception.getClass().getName(),
-					LocalDateTime.now()), HttpStatus.BAD_REQUEST);					
+				BadRequestExceptionDetails.builder()
+					.title("Bad Request Exception, check the Documentation")
+					.status(HttpStatus.BAD_REQUEST.value())
+					.details(exception.getMessage())
+					.developerMessage(exception.getClass().getName())
+					.timestamp(LocalDateTime.now())
+					.build(), HttpStatus.BAD_REQUEST);	
 	}
 	
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(
 			MethodArgumentNotValidException exception, HttpHeaders headers, HttpStatus status, WebRequest request){
+		
 		
 		List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
 
@@ -45,14 +46,15 @@ public class RestExecptionHandler extends ResponseEntityExceptionHandler{
 		String fieldsMessage = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(", "));
 			
 		return new ResponseEntity<>(
-				new ValidExceptionDetails(
-					"Bad Request Exception, Invalid Fields",
-					HttpStatus.BAD_REQUEST.value(),
-					"Check the field(s) error",
-					exception.getClass().getName(),
-					LocalDateTime.now(),
-					fields,
-					fieldsMessage),HttpStatus.BAD_REQUEST);
+				ValidExceptionDetails.builder()
+					.title("Bad Request Exception, Invalid Fields")
+					.status(HttpStatus.BAD_REQUEST.value())
+					.details("Check the field(s) error")
+					.developerMessage(exception.getClass().getName())
+					.timestamp(LocalDateTime.now())
+					.fields(fields)
+					.fieldsMessage(fieldsMessage)
+					.build(), HttpStatus.BAD_REQUEST);
 		
 	}
 
@@ -60,7 +62,7 @@ public class RestExecptionHandler extends ResponseEntityExceptionHandler{
 	protected ResponseEntity<Object> handleExceptionInternal(
 			Exception exception, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
-				var exceptionDetails = new ExceptionDetails(
+				ExceptionDetails exceptionDetails = new ExceptionDetails(
 					exception.getCause().getMessage(),
 					status.value(),
 					exception.getMessage(),

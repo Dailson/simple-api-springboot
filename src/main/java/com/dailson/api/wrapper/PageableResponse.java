@@ -10,12 +10,14 @@ import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 
-//import lombok.Getter;
-//import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-//@Getter
-//@Setter
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class PageableResponse<T> extends PageImpl<T> {
+
+	private static final long serialVersionUID = 1L;
 	private boolean first;
 	private boolean last;
 	private int totalPages;
@@ -40,61 +42,4 @@ public class PageableResponse<T> extends PageImpl<T> {
         this.numberOfElements = numberOfElements;
 
     }
-
-	/**
-	 * @return the first
-	 */
-	public boolean isFirst() {
-		return first;
-	}
-
-	/**
-	 * @param first the first to set
-	 */
-	public void setFirst(boolean first) {
-		this.first = first;
-	}
-
-	/**
-	 * @return the last
-	 */
-	public boolean isLast() {
-		return last;
-	}
-
-	/**
-	 * @param last the last to set
-	 */
-	public void setLast(boolean last) {
-		this.last = last;
-	}
-
-	/**
-	 * @return the totalPages
-	 */
-	public int getTotalPages() {
-		return totalPages;
-	}
-
-	/**
-	 * @param totalPages the totalPages to set
-	 */
-	public void setTotalPages(int totalPages) {
-		this.totalPages = totalPages;
-	}
-
-	/**
-	 * @return the numberOfElements
-	 */
-	public int getNumberOfElements() {
-		return numberOfElements;
-	}
-
-	/**
-	 * @param numberOfElements the numberOfElements to set
-	 */
-	public void setNumberOfElements(int numberOfElements) {
-		this.numberOfElements = numberOfElements;
-	}
-
 }

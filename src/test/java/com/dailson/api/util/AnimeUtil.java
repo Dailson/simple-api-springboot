@@ -7,33 +7,36 @@ import com.dailson.api.requests.AnimePutRequestBody;
 public class AnimeUtil {
 
 	public static Anime createEmptyAnimeWithId() {
-		return new Anime();
+		return Anime.builder().build();
 	}
 
 	public static Anime createValidAnimeWithoutId() {
-		String name = "Dailson";
-		String url = "http://www.dailson.com.br";
-		return new Anime(null, name, url);
+		return Anime.builder()
+				.name("Dailson")
+				.url("http://www.dailson.com.br")
+				.build();
 	}
-
 	public static Anime createValidAnimeWithId() {
-		String name = "Dailson";
-		String url = "http://www.dailson.com.br";
-		Long id = 1L;
-		return new Anime(id, name, url);
+		return Anime.builder()
+				.id(1L)
+				.name("Dailson")
+				.url("http://www.dailson.com.br")
+				.build();
 	}
 
 	public static AnimePostRequestBody createPostRequestBodyAnime() {
-		String name = "Dailson";
-		String url = "http://www.dailson.com.br";
-		return new AnimePostRequestBody(name, url);
+		return AnimePostRequestBody.builder()
+				.name("Dailson")
+				.url("http://www.dailson.com.br")
+				.build();
 	}
 
 	public static AnimePutRequestBody createPutRequestBody() {
-		String name = "Dailson";
-		String url = "http://www.dailson.com.br";
-		Long id = 1L;
-		return new AnimePutRequestBody(id, name, url);
+		return AnimePutRequestBody.builder()
+				.id(1L)
+				.name("Dailson")
+				.url("http://www.dailson.com.br")
+				.build();
 	}
 
 }
