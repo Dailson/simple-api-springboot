@@ -65,14 +65,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		log.info("Password encoded {}", passwordEncoder.encode("test"));
 		
 		// creates user in memory
-//		auth.inMemoryAuthentication()
-//			.withUser("dailson")
-//			.password(passwordEncoder.encode("test"))
-//			.roles("USER", "ADMIN")
-//			.and()
-//			.withUser("bito")
-//			.password(passwordEncoder.encode("test"))
-//			.roles("USER");
+		auth.inMemoryAuthentication()
+			.withUser("dailson")
+			.password(passwordEncoder.encode("test"))
+			.roles("USER", "ADMIN")
+			.and()
+			.withUser("bito")
+			.password(passwordEncoder.encode("test"))
+			.roles("USER");
 			
 			auth.userDetailsService(devDojoUserDetailsService)
 					.passwordEncoder(passwordEncoder);
